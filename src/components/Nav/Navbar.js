@@ -21,7 +21,7 @@ const Navbar = ({ pages = [], color }) => {
   const [activeMenu, setActiveMenu] = useState(false);
 
   return (
-    <nav className={`navbar is-fixed-top is-${color}`}>
+    <nav className={`navbar has-shadow is-spaced ${color ? 'is-'+color : ''}`}>
       <div className="navbar-brand">
         <a className="navbar-item is-capitalized" href="home">
           YAAS
