@@ -4,6 +4,7 @@ import React, { useState } from "react";
  * This component is a modal form that contains a player's name.
  * It doesn't actually use a form since we never submit properly.
  * TODO: Focus form on opening
+ * TODO: Add keyboard shortcuts
  */
 const NewPlayer = ({ add }) => {
   const [isActive, setActive] = useState(false);
@@ -15,6 +16,11 @@ const NewPlayer = ({ add }) => {
     setName("");
     setActive(false);
   };
+
+  const closeModal = event => {
+    event.preventDefault();
+    setActive(false);
+  }
   
   return (
     <>
@@ -42,7 +48,7 @@ const NewPlayer = ({ add }) => {
             <button className="button is-success" onClick={addPlayer}>
               Add player
             </button>
-            <button className="button" onClick={() => setActive(false)}>
+            <button className="button" onClick={closeModal}>
               Cancel
             </button>
           </footer>
@@ -50,7 +56,7 @@ const NewPlayer = ({ add }) => {
         <button
           className="modal-close is-large"
           aria-label="close"
-          onClick={() => setActive(false)}
+          onClick={closeModal}
         ></button>
       </div>
     </>

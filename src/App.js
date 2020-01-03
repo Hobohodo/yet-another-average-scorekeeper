@@ -10,7 +10,7 @@ function App() {
   const [players, setPlayers] = useState([]);
 
   const addPlayer = name => {
-    const newPlayers = [...players, { name: name }];
+    const newPlayers = [...players, { name: name, score: 0 }];
     setPlayers(newPlayers);
   };
 
