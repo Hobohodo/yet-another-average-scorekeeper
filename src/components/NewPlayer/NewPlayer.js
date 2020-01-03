@@ -8,7 +8,7 @@ import React, { useState } from "react";
  */
 const NewPlayer = ({ add }) => {
   const [isActive, setActive] = useState(false);
-  const [name, setName] = useState(null);
+  const [name, setName] = useState("");
 
   const addPlayer = event => {
     event.preventDefault();
