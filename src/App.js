@@ -1,12 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
+import Navbar from './components/Nav/Navbar';
 
+
+const pages=['home', 'about'];
 function App() {
   return (
-    <container className="container">
+    <div className="container">
+      <Navbar pages={pages} />
       <header>Welcome to YAAS!</header>
-    </container>
+      
+    </div>
   );
 }
 
