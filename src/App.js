@@ -8,11 +8,33 @@ const pages = ["home", "about"];
 
 function App() {
   const [players, setPlayers] = useState([]);
+  const [stages, setStages] = useState({1: "Stage 1"});
 
   const addPlayer = name => {
-    const newPlayers = [...players, { name: name, score: 0 }];
+    const newPlayers = [...players, { name: name, score: [0] }];
     setPlayers(newPlayers);
   };
+
+  /**
+   * Add a new stage to the stages of the game. This could be a round or a type of scoring
+   * @param {String} stage name of the new stage 
+   */
+  const addStage = stage => {
+    let newStages = stages;
+    newStages.set(newStages.length + 1, stage);
+    setStages(newStages);
+    updatePlayersWithNewStage(stage);
+  }
+
+  /**
+   * Add a new Stage to the scores of each player, with a default value of 0
+   * @param {String} newStage 
+   */
+  const updatePlayersWithNewStage = newStage => {
+    players.map(player => {
+      player.score.set(newStage, 0);
+    });
+  }
 
   return (
     <div className="main">

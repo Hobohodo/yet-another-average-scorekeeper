@@ -24,6 +24,7 @@ const Player = ({ player }) => {
       <div className="card-header">
         <p className="card-header-title">{player.name}</p>
       </div>
+      {/* TODO: Change this to work with multiple scores in an array/map/object */}
       <Scorebox score={score} setScore={setScore} />
     </div>
   );
