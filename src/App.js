@@ -11,7 +11,7 @@ function App() {
   const [stages, setStages] = useState({1: "Stage 1"});
 
   const addPlayer = name => {
-    const newPlayers = [...players, { name: name, score: [0] }];
+    const newPlayers = [...players, { name: name, score: 0 }];
     setPlayers(newPlayers);
   };
 
@@ -32,7 +32,7 @@ function App() {
    */
   const updatePlayersWithNewStage = newStage => {
     players.map(player => {
-      player.score.set(newStage, 0);
+      player.score.set(newStage, 0); //TODO: Work out how to add a stage to the scores using a key instead of the stage name
     });
   }
 
