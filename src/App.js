@@ -3,6 +3,7 @@ import "./App.scss";
 import Navbar from "./components/Nav/Navbar";
 import Player from "./components/Player/Player";
 import NewPlayer from "./components/NewPlayer/NewPlayer";
+import uuidv4 from "uuid/v4";
 
 const pages = ["home", "about"];
 
@@ -11,7 +12,7 @@ function App() {
   const [stages, setStages] = useState({1: "Stage 1"});
 
   const addPlayer = name => {
-    const newPlayers = [...players, { name: name, score: 0 }];
+    const newPlayers = [...players, { key: uuidv4(), name: name, score: 0 }];
     setPlayers(newPlayers);
   };
 
@@ -28,12 +29,16 @@ function App() {
 
   /**
    * Add a new Stage to the scores of each player, with a default value of 0
-   * @param {String} newStage 
+   * @param {String} newStage title of stage
    */
   const updatePlayersWithNewStage = newStage => {
-    players.map(player => {
+    players.forEach(player => {
       player.score.set(newStage, 0); //TODO: Work out how to add a stage to the scores using a key instead of the stage name
     });
+  }
+
+  const updatePlayer = () => {
+    setPlayers([...players]);
   }
 
   return (
@@ -43,7 +48,7 @@ function App() {
         <section className="section">
           <header>Welcome to YAAS!</header>
           <div className="container">
-            <Players players={players} />
+            <Players players={players} updatePlayer={updatePlayer} />
           </div>
         </section>
         <section className="section">
@@ -54,7 +59,7 @@ function App() {
   );
 }
 
-const Players = ({ players }) => {
+const Players = ({ players, updatePlayer }) => {
   if(!players.length) {
     return (<div>You have no players!</div>);
   }
@@ -62,7 +67,7 @@ const Players = ({ players }) => {
       <div className="columns">
         {players.map((player, i) => (
           <div className="column" key={i}>
-            <Player player={player} />
+            <Player player={player} updatePlayer={updatePlayer} />
           </div>
         ))}
       </div>

@@ -12,8 +12,13 @@ const Scorebox = ({ score, setScore }) => {
   );
 };
 
-const Player = ({ player }) => {
-  const [score, setScore] = useState(player.score);
+const Player = ({ player, updatePlayer }) => {
+  // const [score, setScore] = useState(player.score);
+  const updateScore = (newScore) => {
+    let newPlayer = player;
+    newPlayer.score = newScore;
+    updatePlayer();
+  }
 
   return (
     <div className="card">
@@ -21,7 +26,7 @@ const Player = ({ player }) => {
         <p className="card-header-title">{player.name}</p>
       </div>
       {/* TODO: Change this to work with multiple scores in an array/map/object */}
-      <Scorebox score={score} setScore={setScore} />
+      <Scorebox score={player.score} setScore={updateScore} />
     </div>
   );
 };
